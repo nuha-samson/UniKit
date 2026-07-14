@@ -1,0 +1,131 @@
+/* ---------- Right Panel (Desktop) ---------- */
+.right-panel {
+    background: var(--card);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-heavy);
+    padding: 24px 20px;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.right-panel h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.6rem;
+    border-bottom: 4px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 8px 0;
+    border-bottom: 3px solid var(--bg);
+}
+
+.stat-number {
+    background: var(--accent);
+    padding: 0 12px;
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    font-weight: 700;
+}
+
+.progress-block {
+    margin-top: 8px;
+}
+
+.progress-block .label {
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-block .bar-bg {
+    background: var(--bg);
+    height: 16px;
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    margin: 6px 0;
+}
+
+.progress-block .bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-right: 3px solid var(--border);
+}
+
+.quote {
+    margin-top: 12px;
+    padding: 16px 12px;
+    background: var(--bg);
+    font-weight: 500;
+    font-size: 1.1rem;
+    border: 4px solid var(--border);
+    border-radius: var(--radius);
+}
+
+/* ---------- Right Panel (Tablet) ---------- */
+.right-panel-tablet {
+    display: none;
+}
+
+.right-panel-tablet .right-panel-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.right-panel-tablet h3 {
+    grid-column: 1 / -1;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.6rem;
+    border-bottom: 4px solid var(--border);
+    padding-bottom: 10px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet: Show tablet version, hide desktop */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .right-panel {
+        display: none !important;
+    }
+
+    .right-panel-tablet {
+        display: block;
+        background: var(--card);
+        border: var(--border-thick);
+        box-shadow: var(--shadow-heavy);
+        padding: 24px 20px;
+        border-radius: var(--radius);
+        margin-top: 16px;
+    }
+}
+
+/* Desktop: Show desktop version, hide tablet */
+@media (min-width: 1200px) {
+    .right-panel {
+        display: flex;
+    }
+
+    .right-panel-tablet {
+        display: none !important;
+    }
+}
+
+/* Mobile: Hide both */
+@media (max-width: 767px) {
+
+    .right-panel,
+    .right-panel-tablet {
+        display: none !important;
+    }
+}
