@@ -137,3 +137,62 @@
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
+/* Add to existing CourseGrid.css */
+
+.course-grid-container {
+    width: 100%;
+    min-height: 200px;
+}
+
+.error-message {
+    background: #FFF5F5;
+    border: 4px solid #FF6B6B;
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+}
+
+.error-message h3 {
+    color: #FF6B6B;
+    margin-bottom: 8px;
+}
+
+.error-message p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.retry-btn {
+    background: var(--text-primary);
+    color: white;
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.retry-btn:hover {
+    background: var(--accent);
+    color: var(--text-primary);
+}
+
+.empty-state {
+    background: var(--card);
+    border: var(--border-thick);
+    border-radius: var(--radius);
+    padding: 40px;
+    text-align: center;
+    box-shadow: var(--shadow-heavy);
+}
+
+.empty-state h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+}

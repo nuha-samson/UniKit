@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from 'react-router-dom'
 import "./sidebar.css";
 
 const Sidebar = () => {
@@ -15,13 +16,24 @@ const Sidebar = () => {
       </div>
       <aside className={`sidebar ${isMobileSidebarOpen ? "sidebar-mobile-open" : ""}`}>
         <ul className="sidebar-list">
-          <li><span className="icon">◇</span> Dashboard</li>
-          <li className="active"><span className="icon">▣</span> Courses</li>
-          <li><span className="icon">📋</span> Assignments</li>
-          <li><span className="icon">📝</span> Exams</li>
-          <li><span className="icon">📅</span> Calendar</li>
-        {/**  <li><span className="icon">📘</span> Notes</li>  */}
-          <li><span className="icon">⚙</span> Settings</li>
+          <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            <li><span className="icon">◇</span> Dashboard</li>
+          </NavLink>
+          <NavLink to="/courses" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            <li><span className="icon">▣</span> Courses</li>
+          </NavLink>
+          <NavLink to="/assignments" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            <li><span className="icon">📋</span> Assignments</li>
+          </NavLink>
+          <NavLink to="/exams" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            <li><span className="icon">📝</span> Exams</li>
+          </NavLink>
+          <NavLink to="/calendar" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            <li><span className="icon">📅</span> Calendar</li>
+          </NavLink>
+          <NavLink to="/settings" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            <li><span className="icon">⚙</span> Settings</li>
+          </NavLink>
         </ul>
       </aside>
     </>

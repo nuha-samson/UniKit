@@ -31,6 +31,7 @@ const Navbar = () => {
           Fall {year}
         </div>
       </div>
+      {/** 
       <div className="search-wrap">
         <span className="search-icon">
           ⌕
@@ -45,7 +46,7 @@ const Navbar = () => {
                 {item}
               </div> ))} </div>)}
       </div>
-
+*/}
       <div className="nav-right">
         <span className="nav-icon" onClick={notify}>🔔</span>
         <div className="avatar">

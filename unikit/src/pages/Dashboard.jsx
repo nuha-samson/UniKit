@@ -1,30 +1,31 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
-import CourseGrid from '../components/CourseGrid/CourseGrid'
 import DeadlineSection from '../components/DeadlineSection/DeadlineSection'
 import StatusPanel from '../components/StatusPanel/StatusPanel'
-import Calendar from '../components/Calendar/Calendar' 
-import Settings from './Settings'
 import './dashboard.css'
 
 const Dashboard = () => {
   return (
     <div className="app">
       <Navbar />
-      <div className="dashboard-grid">  
+      <div className="dashboard-layout">
         <Sidebar />
-        <CourseGrid />
-      </div>
-      <DeadlineSection />
-      <section className="calendar-section">
-            <h2 className="calendar-section-title">📅 Academic Calendar</h2>
-            <Calendar />
+        <main className="main-content">
+          <div className="page-header">
+            <h1>📊 Dashboard</h1>
+            <p>Welcome back! Here's your overview.</p>
+          </div>
           
-        </section>
-      <StatusPanel />
-      <Settings />
+          <DeadlineSection />
+          
+         
+          
+          <StatusPanel />
+        </main>
+      </div>
     </div>
   )
 }
+
 export default Dashboard

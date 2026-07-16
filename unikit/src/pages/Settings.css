@@ -56,23 +56,6 @@
     margin-bottom: 24px;
 }
 
-/* ---------- Form Groups ---------- */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 0.95rem;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
 
 .settings-input {
     width: 100%;

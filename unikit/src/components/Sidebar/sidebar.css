@@ -6,7 +6,7 @@
     padding: 20px 12px;
     border-radius: var(--radius);
     display: block;
-    width: 100%;
+    width: 25%;
 }
 
 /* ---------- Mobile Trigger ---------- */
@@ -71,6 +71,19 @@
     font-size: 1.5rem;
     width: 2rem;
     text-align: center;
+}
+
+/* ---------- Active Link ---------- */
+.active-link li {
+    background: var(--accent) !important;
+    border-color: var(--border) !important;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 /* ============================================

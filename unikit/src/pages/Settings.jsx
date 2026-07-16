@@ -6,7 +6,6 @@ import './Settings.css'
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('profile')
 
-  // Sample user data
   const [user, setUser] = useState({
     name: 'John Doe',
     email: 'john.doe@university.edu',
@@ -44,7 +43,6 @@ const Settings = () => {
           </div>
 
           <div className="settings-container">
-            {/* Settings Tabs */}
             <div className="settings-tabs">
               <button 
                 className={`settings-tab ${activeTab === 'profile' ? 'active' : ''}`}
@@ -66,10 +64,8 @@ const Settings = () => {
               </button>
             </div>
 
-            {/* Settings Content */}
             <div className="settings-content">
               <form onSubmit={handleSubmit}>
-                {/* Profile Tab */}
                 {activeTab === 'profile' && (
                   <div className="settings-section">
                     <h2>Profile Information</h2>
@@ -132,7 +128,6 @@ const Settings = () => {
                   </div>
                 )}
 
-                {/* Preferences Tab */}
                 {activeTab === 'preferences' && (
                   <div className="settings-section">
                     <h2>Preferences</h2>
@@ -185,20 +180,9 @@ const Settings = () => {
                         <span className="toggle-slider disabled"></span>
                       </label>
                     </div>
-
-                    <div className="form-group">
-                      <label>Default Page</label>
-                      <select className="settings-select">
-                        <option>Dashboard</option>
-                        <option>Courses</option>
-                        <option>Calendar</option>
-                        <option>Assignments</option>
-                      </select>
-                    </div>
                   </div>
                 )}
 
-                {/* Security Tab */}
                 {activeTab === 'security' && (
                   <div className="settings-section">
                     <h2>Security</h2>
@@ -246,7 +230,6 @@ const Settings = () => {
                   </div>
                 )}
 
-                {/* Save Button */}
                 <div className="settings-actions">
                   <button type="submit" className="save-btn">
                     💾 Save Changes
