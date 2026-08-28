@@ -3,7 +3,7 @@
 UniKit is a student productivity dashboard designed to help university students organize and manage their academic life in one place.
 
 ##  Features
-
+*  User authentication and personalized accounts
 *  Manage courses and course information
 *  Track academic deadlines
 *  Mark deadlines as completed
@@ -24,7 +24,7 @@ The project also serves as a practical full-stack application for applying front
 
 ##  Future Improvements
 
-*  User authentication and personalized accounts
+
 *  More detailed academic analytics
 *  Deadline reminders and notifications
 *  Calendar and class schedule integration
