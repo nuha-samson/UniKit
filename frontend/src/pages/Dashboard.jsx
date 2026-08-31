@@ -12,10 +12,7 @@ const Dashboard = () => {
       <div className="dashboard-layout">
         <Sidebar />
         <main className="main-content">
-          <div className="page-header">
-            <h1>📊 Dashboard</h1>
-            <p>Welcome back! Here's your overview.</p>
-          </div>
+         
           
           <DeadlineSection />
           

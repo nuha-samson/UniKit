@@ -17,13 +17,13 @@ const Sidebar = () => {
       <aside className={`sidebar ${isMobileSidebarOpen ? "sidebar-mobile-open" : ""}`}>
         <ul className="sidebar-list">
           <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            <li><span className="icon">◇</span> Dashboard</li>
+            <li> Dashboard</li>
           </NavLink>
           <NavLink to="/courses" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            <li><span className="icon">▣</span> Courses</li>
+            <li> Courses</li>
           </NavLink>
           <NavLink to="/settings" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            <li><span className="icon">⚙</span> Settings</li>
+            <li> Settings</li>
           </NavLink>
         </ul>
       </aside>
