@@ -1,62 +1,45 @@
 import './Navbar.css'
-import { useState } from "react";
+import { useAuth } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
 
-  const now = new Date();
-  const year = now.getFullYear();
+  const now = new Date()
+  const year = now.getFullYear()
 
-  const [course, setCourse] = useState('');
-
-  const courses = [
-    "Data Structures",
-    "Electric Circuit",
-    "Applied Mathematics",
-    "Geography"
-  ];
-  const filteredCourses = courses.filter((item) =>
-    item.toLowerCase().includes(course.toLowerCase())
-  );
-  function notify() {
-    console.log("Notification clicked");
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
   }
+
+  const getInitials = () => {
+    if (!user?.name) return 'U'
+    return user.name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2)
+  }
+
   return (
     <header className="navbar">
-
       <div className="nav-left">
-        <div className="logo">
-          Uni<span>Kit</span>
-        </div>
-        <div className="semester">
-          Fall {year}
-        </div>
-      </div>
-      {/** 
-      <div className="search-wrap">
-        <span className="search-icon">
-          ⌕
-        </span>
-        <input type="text"
-          value={course}
-          onChange={(e) => setCourse(e.target.value)}
-          placeholder="Search courses, assignments..." />
-        {course && (<div className="search-results"> 
-          {filteredCourses.map((item, index) => (
-              <div key={index}>
-                {item}
-              </div> ))} </div>)}
-      </div>
-*/}
-      <div className="nav-right">
-        <span className="nav-icon" onClick={notify}>🔔</span>
-        <div className="avatar">
-          NS
-        </div>
+        <div className="logo">Uni<span>Kit</span></div>
+        <div className="semester">Fall {year}</div>
       </div>
 
+      <div className="nav-right">
+        <span className="nav-user">{user?.name || 'User'}</span>
+        <button onClick={handleLogout} className="logout-btn">
+          Logout
+        </button>
+        <div className="avatar">{getInitials()}</div>
+      </div>
     </header>
   )
 }
 
-
-export default Navbar;
+export default Navbar

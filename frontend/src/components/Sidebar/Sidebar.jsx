@@ -22,15 +22,6 @@ const Sidebar = () => {
           <NavLink to="/courses" className={({ isActive }) => isActive ? 'active-link' : ''}>
             <li><span className="icon">▣</span> Courses</li>
           </NavLink>
-          <NavLink to="/assignments" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            <li><span className="icon">📋</span> Assignments</li>
-          </NavLink>
-          <NavLink to="/exams" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            <li><span className="icon">📝</span> Exams</li>
-          </NavLink>
-          <NavLink to="/calendar" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            <li><span className="icon">📅</span> Calendar</li>
-          </NavLink>
           <NavLink to="/settings" className={({ isActive }) => isActive ? 'active-link' : ''}>
             <li><span className="icon">⚙</span> Settings</li>
           </NavLink>
