@@ -37,11 +37,6 @@ const Settings = () => {
       <div className="dashboard-layout">
         <Sidebar />
         <main className="main-content">
-          <div className="page-header">
-            <h1>⚙️ Settings</h1>
-            <p>Manage your account preferences and profile.</p>
-          </div>
-
           <div className="settings-container">
             <div className="settings-tabs">
               <button 

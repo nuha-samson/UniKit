@@ -4,7 +4,7 @@ import './DeadlineSection.css'
 const DeadlineSection = () => {
   return (
     <>
-       <section class="deadlines-section">
+       <section className="deadlines-section">
         <h2>Upcoming Deadlines</h2>
         <DeadlineCard/>
         </section>

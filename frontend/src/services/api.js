@@ -39,5 +39,47 @@ export const authApi = {
       },
     }),
 };
+export const courseApi = {
+  getAll: (token) =>
+    apiCall("/courses", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
 
+  getOne: (token, id) =>
+    apiCall(`/courses/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+
+  create: (token, course) =>
+    apiCall("/courses", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(course),
+    }),
+
+  update: (token, id, course) =>
+    apiCall(`/courses/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(course),
+    }),
+
+  delete: (token, id) =>
+    apiCall(`/courses/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+};
 export default apiCall;
