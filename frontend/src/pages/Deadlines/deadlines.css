@@ -1,0 +1,158 @@
+.deadlines-layout {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+.deadlines-main {
+  flex: 1;
+  min-width: 0;
+  padding: 36px;
+}
+
+.deadlines-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.deadlines-eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.deadlines-header h1 {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.deadlines-subtitle {
+  max-width: 650px;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.deadlines-add-button {
+  flex-shrink: 0;
+  padding: 13px 20px;
+  border: 3px solid #000;
+  background: #f5d547;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.deadlines-add-button:hover {
+  box-shadow: 5px 5px 0 #000;
+  transform: translate(-2px, -2px);
+}
+
+.deadlines-error {
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  border: 3px solid #000;
+  background: #ff6b6b;
+  font-weight: 800;
+}
+
+.deadline-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.deadline-date-group {
+  width: 100%;
+}
+
+.deadline-date-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #000;
+}
+
+.deadline-date-heading h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.deadline-date-heading span {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.deadline-date-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.deadlines-empty-state {
+  padding: 60px 24px;
+  border: 3px dashed #000;
+  text-align: center;
+}
+
+.deadlines-empty-state h2 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.deadlines-empty-state p {
+  margin: 0 0 20px;
+}
+
+.deadlines-empty-button {
+  padding: 12px 18px;
+  border: 3px solid #000;
+  background: #f5d547;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.deadlines-empty-button:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
+
+@media (max-width: 800px) {
+  .deadlines-main {
+    padding: 24px;
+  }
+
+  .deadlines-header {
+    flex-direction: column;
+  }
+
+  .deadlines-add-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .deadlines-main {
+    padding: 18px;
+  }
+
+  .deadlines-header h1 {
+    font-size: 34px;
+  }
+
+  .deadline-date-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

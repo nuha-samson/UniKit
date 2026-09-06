@@ -196,3 +196,185 @@
 .empty-state p {
     color: var(--text-secondary);
 }
+/* ---------- Course Actions ---------- */
+
+.course-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.course-actions .card-btn {
+    flex: 1;
+    margin-top: 0;
+}
+
+.edit-btn {
+    background: var(--text-primary);
+}
+
+.delete-btn {
+    background: #ff6b6b;
+}
+
+.delete-btn:hover {
+    background: #ff4444;
+    color: white;
+}
+
+/* ---------- Add Course Button ---------- */
+
+.add-course-btn {
+    background: var(--accent);
+    color: var(--text-primary);
+    border: 4px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 20px;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 var(--border);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.add-course-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 var(--border);
+}
+
+/* ---------- Page Header Layout ---------- */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+/* ---------- Course Form ---------- */
+
+.course-form-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.course-form {
+    width: min(520px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--card);
+    border: var(--border-thick);
+    border-radius: var(--radius);
+    box-shadow: 12px 12px 0 var(--border);
+    padding: 28px;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.form-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+}
+
+.close-btn {
+    border: 3px solid var(--border);
+    background: var(--bg);
+    width: 42px;
+    height: 42px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: var(--radius);
+}
+
+.course-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.course-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-weight: 700;
+}
+
+.course-form input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text-primary);
+    padding: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.course-form input:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 1px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.form-actions button {
+    flex: 1;
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    padding: 13px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: var(--bg);
+    color: var(--text-primary);
+}
+
+.save-btn {
+    background: var(--accent);
+    color: var(--text-primary);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 767px) {
+    .page-header {
+        flex-direction: column;
+    }
+
+    .add-course-btn {
+        width: 100%;
+    }
+
+    .course-form {
+        padding: 20px;
+    }
+
+    .course-actions {
+        flex-direction: column;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+}
