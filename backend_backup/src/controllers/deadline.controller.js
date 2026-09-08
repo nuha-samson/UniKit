@@ -2,66 +2,14 @@ import mongoose from "mongoose";
 import Deadline from "../models/Deadline.js";
 import Course from "../models/Course.js";
 
-const allowedTypes = ["assignment", "quiz", "test", "exam", "study"];
-const allowedPriorities = ["low", "medium", "high"];
-
-const validateDeadlineInput = ({
-  title,
-  course,
-  type,
-  dueDate,
-  priority,
-  description,
-}) => {
-  if (!title || !course || !type || !dueDate) {
-    return "Title, course, type, and due date are required";
-  }
-
-  if (!allowedTypes.includes(type)) {
-    return "Invalid deadline type";
-  }
-
-  if (priority !== undefined && !allowedPriorities.includes(priority)) {
-    return "Invalid priority";
-  }
-
-  if (description !== undefined && description.length > 1000) {
-    return "Description is too long";
-  }
-
-  const parsedDate = new Date(dueDate);
-
-  if (Number.isNaN(parsedDate.getTime())) {
-    return "Invalid due date";
-  }
-
-  return null;
-};
-
 export const createDeadline = async (req, res) => {
   try {
-    const {
-      title,
-      course,
-      type,
-      dueDate,
-      priority,
-      description,
-    } = req.body;
+    const { title, course, type, dueDate, priority, description } = req.body;
 
-    const validationError = validateDeadlineInput({
-      title,
-      course,
-      type,
-      dueDate,
-      priority,
-      description,
-    });
-
-    if (validationError) {
+    if (!title || !course || !type || !dueDate) {
       return res.status(400).json({
         success: false,
-        message: validationError,
+        message: "Title, course, type, and due date are required",
       });
     }
 
@@ -72,12 +20,12 @@ export const createDeadline = async (req, res) => {
       });
     }
 
-    const ownedCourse = await Course.findOne({
+    const courseExists = await Course.findOne({
       _id: course,
       user: req.user.id,
     });
 
-    if (!ownedCourse) {
+    if (!courseExists) {
       return res.status(404).json({
         success: false,
         message: "Course not found",
@@ -86,12 +34,12 @@ export const createDeadline = async (req, res) => {
 
     const deadline = await Deadline.create({
       user: req.user.id,
-      title: title.trim(),
+      title,
       course,
       type,
-      dueDate: new Date(dueDate),
-      priority: priority || "medium",
-      description: description?.trim() || "",
+      dueDate,
+      priority,
+      description,
     });
 
     const populatedDeadline = await Deadline.findById(deadline._id).populate(
@@ -119,7 +67,7 @@ export const getDeadlines = async (req, res) => {
       user: req.user.id,
     })
       .populate("course", "name code")
-      .sort({ completedAt: 1, dueDate: 1 });
+      .sort({ dueDate: 1 });
 
     return res.status(200).json({
       success: true,
@@ -130,7 +78,7 @@ export const getDeadlines = async (req, res) => {
 
     return res.status(500).json({
       success: false,
-      message: "Failed to load deadlines",
+      message: "Failed to get deadlines",
     });
   }
 };
@@ -167,7 +115,7 @@ export const getDeadline = async (req, res) => {
 
     return res.status(500).json({
       success: false,
-      message: "Failed to load deadline",
+      message: "Failed to get deadline",
     });
   }
 };
@@ -205,17 +153,6 @@ export const updateDeadline = async (req, res) => {
       completed,
     } = req.body;
 
-    if (title !== undefined) {
-      if (!title.trim()) {
-        return res.status(400).json({
-          success: false,
-          message: "Title cannot be empty",
-        });
-      }
-
-      deadline.title = title.trim();
-    }
-
     if (course !== undefined) {
       if (!mongoose.Types.ObjectId.isValid(course)) {
         return res.status(400).json({
@@ -224,12 +161,12 @@ export const updateDeadline = async (req, res) => {
         });
       }
 
-      const ownedCourse = await Course.findOne({
+      const courseExists = await Course.findOne({
         _id: course,
         user: req.user.id,
       });
 
-      if (!ownedCourse) {
+      if (!courseExists) {
         return res.status(404).json({
           success: false,
           message: "Course not found",
@@ -239,61 +176,18 @@ export const updateDeadline = async (req, res) => {
       deadline.course = course;
     }
 
-    if (type !== undefined) {
-      if (!allowedTypes.includes(type)) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid deadline type",
-        });
-      }
+    if (title !== undefined) deadline.title = title;
+    if (type !== undefined) deadline.type = type;
+    if (dueDate !== undefined) deadline.dueDate = dueDate;
+    if (priority !== undefined) deadline.priority = priority;
+    if (description !== undefined) deadline.description = description;
 
-      deadline.type = type;
+    if (completed === true) {
+      deadline.completedAt = new Date();
     }
 
-    if (dueDate !== undefined) {
-      const parsedDate = new Date(dueDate);
-
-      if (Number.isNaN(parsedDate.getTime())) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid due date",
-        });
-      }
-
-      deadline.dueDate = parsedDate;
-    }
-
-    if (priority !== undefined) {
-      if (!allowedPriorities.includes(priority)) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid priority",
-        });
-      }
-
-      deadline.priority = priority;
-    }
-
-    if (description !== undefined) {
-      if (description.length > 1000) {
-        return res.status(400).json({
-          success: false,
-          message: "Description is too long",
-        });
-      }
-
-      deadline.description = description.trim();
-    }
-
-    if (completed !== undefined) {
-      if (typeof completed !== "boolean") {
-        return res.status(400).json({
-          success: false,
-          message: "Completed must be a boolean",
-        });
-      }
-
-      deadline.completedAt = completed ? new Date() : null;
+    if (completed === false) {
+      deadline.completedAt = null;
     }
 
     await deadline.save();

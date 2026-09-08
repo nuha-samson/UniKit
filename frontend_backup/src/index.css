@@ -1,0 +1,33 @@
+/* ---------- GLOBAL RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- ROOT VARIABLES ---------- */
+:root {
+  --bg: #F4F4F4;
+  --card: #FFFFFF;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --border: #111111;
+  --accent: #FFD43B;
+
+  --font-body: 'Inter', 'IBM Plex Sans', sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+
+  --shadow-heavy: 8px 8px 0 rgba(0, 0, 0, 0.15);
+  --border-thick: 4px solid var(--border);
+  --radius: 4px;
+  --transition: 0.18s ease-in-out;
+}
+
+/* ---------- BODY ---------- */
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 16px;
+}

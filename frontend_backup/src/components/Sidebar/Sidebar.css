@@ -1,0 +1,122 @@
+/* ---------- Sidebar ---------- */
+.sidebar {
+    background: var(--card);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-heavy);
+    padding: 20px 12px;
+    border-radius: var(--radius);
+    display: block;
+    width: 25%;
+}
+
+/* ---------- Mobile Trigger ---------- */
+.sidebar-mobile-trigger {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-heavy);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.sidebar-mobile-trigger:hover {
+    background: var(--accent);
+}
+
+.sidebar-mobile-trigger span {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+/* ---------- Sidebar List ---------- */
+.sidebar-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    border: 3px solid transparent;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.sidebar-list li:hover {
+    background: var(--bg);
+    border-color: var(--border);
+}
+
+.sidebar-list .active {
+    background: var(--accent);
+    border-color: var(--border);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-list .icon {
+    font-size: 1.5rem;
+    width: 2rem;
+    text-align: center;
+}
+
+/* ---------- Active Link ---------- */
+.active-link li {
+    background: var(--accent) !important;
+    border-color: var(--border) !important;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Mobile: Hide sidebar, show hamburger */
+@media (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar.sidebar-mobile-open {
+        display: flex;
+        flex-direction: column;
+        margin-top: 8px;
+    }
+
+    .sidebar-mobile-trigger {
+        display: flex;
+    }
+}
+
+/* Tablet & Desktop: Show sidebar, hide hamburger */
+@media (min-width: 768px) {
+    .sidebar {
+        display: block;
+        position: sticky;
+        top: 20px;
+        height: fit-content;
+    }
+
+    .sidebar-mobile-trigger {
+        display: none;
+    }
+}

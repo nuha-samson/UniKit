@@ -1,0 +1,214 @@
+.deadline-section {
+  width: 100%;
+}
+
+.deadline-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin-bottom: 20px;
+}
+
+.section-eyebrow {
+  margin: 0 0 5px;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.deadline-section-header h2 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.add-deadline-button {
+  padding: 12px 18px;
+
+  border: 3px solid #000;
+  background: #f5d547;
+
+  font: inherit;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.add-deadline-button:hover {
+  box-shadow: 5px 5px 0 #000;
+  transform: translate(-2px, -2px);
+}
+
+.deadline-section-error {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+
+  border: 3px solid #000;
+  background: #ff6b6b;
+
+  font-weight: 800;
+}
+
+.deadline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.deadline-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 18px;
+
+  border: 3px solid #000;
+  background: #fff;
+
+  box-shadow: 5px 5px 0 #000;
+}
+
+.deadline-card-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.deadline-card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 10px;
+}
+
+.deadline-card-title-row h3 {
+  margin: 0;
+
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.deadline-status-badge {
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border: 2px solid #000;
+
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.deadline-status-badge.safe {
+  background: #72d572;
+}
+
+.deadline-status-badge.soon {
+  background: #f5d547;
+}
+
+.deadline-status-badge.urgent,
+.deadline-status-badge.overdue {
+  background: #ff6b6b;
+}
+
+.deadline-card-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 10px;
+}
+
+.deadline-card-info span {
+  padding: 4px 8px;
+
+  border: 2px solid #000;
+
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.deadline-card-due {
+  font-size: 14px;
+}
+
+.deadline-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.deadline-card-actions button {
+  padding: 9px 12px;
+
+  border: 2px solid #000;
+  background: #fff;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.deadline-card-actions button:hover {
+  background: #000;
+  color: #fff;
+}
+
+.deadline-empty-state {
+  padding: 36px 20px;
+
+  border: 3px dashed #000;
+
+  text-align: center;
+}
+
+.deadline-empty-state h3 {
+  margin: 0 0 8px;
+
+  font-size: 20px;
+}
+
+.deadline-empty-state p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .deadline-section-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .add-deadline-button {
+    width: 100%;
+  }
+
+  .deadline-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .deadline-card-title-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .deadline-card-actions {
+    width: 100%;
+  }
+
+  .deadline-card-actions button {
+    flex: 1;
+  }
+}

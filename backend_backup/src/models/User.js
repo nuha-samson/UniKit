@@ -23,19 +23,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
     },
-
-    academicYear: {
-      type: String,
-      trim: true,
-      maxlength: 30,
-      default: "",
-    },
-
-    semester: {
-      type: String,
-      enum: ["fall", "spring", "summer"],
-      default: "fall",
-    },
   },
   {
     timestamps: true,

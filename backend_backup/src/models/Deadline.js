@@ -6,14 +6,12 @@ const deadlineSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-      index: true,
     },
 
     title: {
       type: String,
       required: true,
       trim: true,
-      minlength: 1,
       maxlength: 150,
     },
 
@@ -25,7 +23,7 @@ const deadlineSchema = new mongoose.Schema(
 
     type: {
       type: String,
-      enum: ["assignment", "quiz", "test", "exam", "study"],
+      enum: ["assignment", "quiz", "exam"],
       required: true,
     },
 
