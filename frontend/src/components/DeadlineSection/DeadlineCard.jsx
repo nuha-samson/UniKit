@@ -1,75 +1,39 @@
-import { getDeadlineStatus } from "../../utils/deadline";
+import { formatDateTime, getDeadlineUrgency } from "../../utils/deadline";
 
-const DeadlineCard = ({
-  deadline,
-  onEdit,
-  onComplete,
-  onDelete,
-}) => {
-  const status = getDeadlineStatus(deadline.dueDate);
+const DeadlineCard = ({ deadline, onEdit, onComplete, onDelete }) => {
+  const urgency = getDeadlineUrgency(deadline.dueDate);
+  const completed = Boolean(deadline.completedAt);
 
-  const dueDate = new Date(deadline.dueDate);
-
-  const formattedDate = dueDate.toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-
-  const formattedTime = dueDate.toLocaleTimeString(undefined, {
-    hour: "numeric",
-    minute: "2-digit",
-  });
-
-  const courseName =
-    deadline.course?.code && deadline.course?.name
-      ? `${deadline.course.code} — ${deadline.course.name}`
-      : deadline.course?.name || "Unknown course";
+  const courseName = deadline.course?.code && deadline.course?.name
+    ? `${deadline.course.code} — ${deadline.course.name}`
+    : deadline.course?.name || "Unknown course";
 
   return (
-    <article className="deadline-card">
-      <div className="deadline-card-main">
-        <div className="deadline-card-title-row">
-          <h3>{deadline.title}</h3>
-
-          <span className={`deadline-status-badge ${status.level}`}>
-            {status.label}
+    <article className={`deadline-card ${completed ? "is-completed" : ""}`}>
+      <div className="deadline-content">
+        <div className="deadline-top-line">
+          <span className="deadline-course">{courseName}</span>
+          <span className={`deadline-urgency ${urgency.level}`}>
+            {completed ? "Completed" : urgency.label}
           </span>
         </div>
-
-        <div className="deadline-card-info">
-          <span>{courseName}</span>
+        <h3>{deadline.title}</h3>
+        <div className="deadline-meta">
           <span>{deadline.type}</span>
           <span>{deadline.priority} priority</span>
         </div>
-
-        <div className="deadline-card-due">
-          <strong>Due:</strong> {formattedDate} at {formattedTime}
-        </div>
+        <p className="deadline-due">Due {formatDateTime(deadline.dueDate)}</p>
       </div>
 
-      <div className="deadline-card-actions">
-        <button
-          type="button"
-          onClick={() => onComplete(deadline)}
-        >
-          Complete
+      <div className="deadline-actions">
+        <button className="secondary-action" onClick={() => onComplete(deadline)}>
+          {completed ? "Mark Active" : "Complete"}
         </button>
-
-        <button
-          type="button"
-          onClick={() => onEdit(deadline)}
-        >
-          Edit
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onDelete(deadline._id)}
-        >
-          Delete
-        </button>
+        <button className="secondary-action" onClick={() => onEdit(deadline)}>Edit</button>
+        <button className="secondary-action" onClick={() => onDelete(deadline._id)}>Delete</button>
       </div>
+
+      {deadline.description && <p className="deadline-description">{deadline.description}</p>}
     </article>
   );
 };

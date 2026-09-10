@@ -233,3 +233,20 @@
     flex: 1;
   }
 }
+.completed-banner {
+  padding: 11px 13px;
+  border: 3px solid #111;
+  background: #7ee787;
+  font-weight: 800;
+}
+
+.modal-left-actions {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 650px) {
+  .modal-left-actions {
+    flex-direction: column;
+  }
+}

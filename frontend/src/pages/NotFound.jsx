@@ -17,12 +17,12 @@ const NotFound = () => {
             <Link to="/courses" className="not-found-btn secondary">Browse Courses</Link>
           </div>
           <div className="not-found-suggestions">
-            <p>🔍 You might be looking for:</p>
+            <p> You might be looking for:</p>
             <div className="suggestion-links">
               <Link to="/">Dashboard</Link>
-              <Link to="/calendar">Calendar</Link>
+             {/**  <Link to="/calendar">Calendar</Link>
               <Link to="/assignments">Assignments</Link>
-              <Link to="/exams">Exams</Link>
+              <Link to="/exams">Exams</Link> */} 
             </div>
           </div>
         </div>

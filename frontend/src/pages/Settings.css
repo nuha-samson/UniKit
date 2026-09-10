@@ -292,3 +292,85 @@
         margin-left: 0;
     }
 }
+.settings-main {
+    max-width: 950px;
+}
+
+.settings-card {
+    background: #fff;
+    border: 3px solid #111;
+    box-shadow: 7px 7px 0 #111;
+    padding: 24px;
+}
+
+.settings-section {
+    padding: 22px 0;
+    border-bottom: 3px solid #111;
+}
+
+.settings-section:first-child {
+    padding-top: 0;
+}
+
+.settings-section:last-of-type {
+    border-bottom: 0;
+}
+
+.settings-section h2 {
+    margin: 0 0 18px;
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.settings-section label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.settings-section input,
+.settings-section select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 3px solid #111;
+    background: #fff;
+    font: inherit;
+}
+
+.settings-section input:focus,
+.settings-section select:focus {
+    outline: none;
+    box-shadow: 4px 4px 0 #111;
+}
+
+.settings-save-row {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 22px;
+}
+
+.save-message {
+    margin-bottom: 18px;
+    padding: 12px;
+    border: 3px solid #111;
+    background: #7ee787;
+    font-weight: 800;
+}
+
+.button-danger {
+    border: 3px solid #111;
+    background: #ff6b6b;
+    padding: 11px 15px;
+    font: inherit;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.button-danger:hover {
+    box-shadow: 4px 4px 0 #111;
+    transform: translate(-2px, -2px);
+}

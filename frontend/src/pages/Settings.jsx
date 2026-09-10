@@ -1,245 +1,150 @@
-import React, { useState } from 'react'
-import Navbar from '../components/Navbar/Navbar'
-import Sidebar from '../components/Sidebar/Sidebar'
-import './Settings.css'
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
+import Sidebar from "../components/Sidebar/Sidebar";
+import { userApi } from "../services/api";
+import { useAuth } from "../context/AuthContext";
+import { getAcademicPeriod } from "../utils/semester";
+import "./Settings.css";
 
 const Settings = () => {
-  const [activeTab, setActiveTab] = useState('profile')
+  const { token, logout } = useAuth();
+  const navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    name: 'John Doe',
-    email: 'john.doe@university.edu',
-    studentId: 'STU2024001',
-    program: 'Computer Science',
-    year: '3rd Year',
-    notifications: true,
-    darkMode: false,
-    emailNotifications: true
-  })
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    academicYear: "",
+    semester: "fall",
+  });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    setUser(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }))
-  }
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Settings saved:', user)
-    alert('✅ Settings saved successfully!')
-  }
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const data = await userApi.getProfile(token);
+        setForm({
+          name: data.user.name || "",
+          email: data.user.email || "",
+          academicYear: data.user.academicYear || "",
+          semester: data.user.semester || "fall",
+        });
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProfile();
+  }, [token]);
+
+  const change = (event) => {
+    setForm((previous) => ({
+      ...previous,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const save = async (event) => {
+    event.preventDefault();
+    setError("");
+    setMessage("");
+
+    try {
+      setSaving(true);
+      const data = await userApi.updateProfile(token, form);
+      setForm({
+        name: data.user.name || "",
+        email: data.user.email || "",
+        academicYear: data.user.academicYear || "",
+        semester: data.user.semester || "fall",
+      });
+      setMessage("Settings saved successfully.");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const signOut = () => {
+    logout();
+    navigate("/login", { replace: true });
+  };
+
+  const period = getAcademicPeriod();
 
   return (
-    <div className="app">
+    <div className="app-shell">
       <Navbar />
-      <div className="dashboard-layout">
+      <div className="page-layout">
         <Sidebar />
-        <main className="main-content">
-          <div className="settings-container">
-            <div className="settings-tabs">
-              <button 
-                className={`settings-tab ${activeTab === 'profile' ? 'active' : ''}`}
-                onClick={() => setActiveTab('profile')}
-              >
-                👤 Profile
-              </button>
-              <button 
-                className={`settings-tab ${activeTab === 'preferences' ? 'active' : ''}`}
-                onClick={() => setActiveTab('preferences')}
-              >
-                ⚡ Preferences
-              </button>
-              <button 
-                className={`settings-tab ${activeTab === 'security' ? 'active' : ''}`}
-                onClick={() => setActiveTab('security')}
-              >
-                🔒 Security
-              </button>
+        <main className="page-main settings-main">
+          <section className="page-heading">
+            <div>
+              <span className="eyebrow">ACCOUNT</span>
+              <h1>Settings</h1>
+              <p>Keep your profile and academic information up to date.</p>
             </div>
+          </section>
 
-            <div className="settings-content">
-              <form onSubmit={handleSubmit}>
-                {activeTab === 'profile' && (
-                  <div className="settings-section">
-                    <h2>Profile Information</h2>
-                    
-                    <div className="form-group">
-                      <label>Full Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={user.name}
-                        onChange={handleChange}
-                        className="settings-input"
-                      />
-                    </div>
+          {loading ? (
+            <div className="page-empty">Loading settings...</div>
+          ) : (
+            <form className="settings-card" onSubmit={save}>
+              {error && <div className="page-error">{error}</div>}
+              {message && <div className="save-message">{message}</div>}
 
-                    <div className="form-group">
-                      <label>Email Address</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={user.email}
-                        onChange={handleChange}
-                        className="settings-input"
-                      />
-                    </div>
+              <section className="settings-section">
+                <h2>Profile</h2>
+                <label>
+                  Full name
+                  <input name="name" value={form.name} onChange={change} required />
+                </label>
+                <label>
+                  Email
+                  <input name="email" type="email" value={form.email} onChange={change} required />
+                </label>
+              </section>
 
-                    <div className="form-row">
-                      <div className="form-group">
-                        <label>Student ID</label>
-                        <input
-                          type="text"
-                          name="studentId"
-                          value={user.studentId}
-                          disabled
-                          className="settings-input disabled"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label>Year</label>
-                        <input
-                          type="text"
-                          name="year"
-                          value={user.year}
-                          onChange={handleChange}
-                          className="settings-input"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label>Program</label>
-                      <input
-                        type="text"
-                        name="program"
-                        value={user.program}
-                        onChange={handleChange}
-                        className="settings-input"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'preferences' && (
-                  <div className="settings-section">
-                    <h2>Preferences</h2>
-
-                    <div className="settings-toggle">
-                      <div className="toggle-info">
-                        <span className="toggle-label">Notifications</span>
-                        <span className="toggle-description">Receive notifications about deadlines and updates</span>
-                      </div>
-                      <label className="toggle-switch">
-                        <input
-                          type="checkbox"
-                          name="notifications"
-                          checked={user.notifications}
-                          onChange={handleChange}
-                        />
-                        <span className="toggle-slider"></span>
-                      </label>
-                    </div>
-
-                    <div className="settings-toggle">
-                      <div className="toggle-info">
-                        <span className="toggle-label">Email Notifications</span>
-                        <span className="toggle-description">Receive email updates about your courses</span>
-                      </div>
-                      <label className="toggle-switch">
-                        <input
-                          type="checkbox"
-                          name="emailNotifications"
-                          checked={user.emailNotifications}
-                          onChange={handleChange}
-                        />
-                        <span className="toggle-slider"></span>
-                      </label>
-                    </div>
-
-                    <div className="settings-toggle">
-                      <div className="toggle-info">
-                        <span className="toggle-label">Dark Mode</span>
-                        <span className="toggle-description">Switch to dark theme (coming soon)</span>
-                      </div>
-                      <label className="toggle-switch">
-                        <input
-                          type="checkbox"
-                          name="darkMode"
-                          checked={user.darkMode}
-                          onChange={handleChange}
-                          disabled
-                        />
-                        <span className="toggle-slider disabled"></span>
-                      </label>
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'security' && (
-                  <div className="settings-section">
-                    <h2>Security</h2>
-
-                    <div className="form-group">
-                      <label>Current Password</label>
-                      <input
-                        type="password"
-                        placeholder="Enter current password"
-                        className="settings-input"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label>New Password</label>
-                      <input
-                        type="password"
-                        placeholder="Enter new password"
-                        className="settings-input"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label>Confirm New Password</label>
-                      <input
-                        type="password"
-                        placeholder="Confirm new password"
-                        className="settings-input"
-                      />
-                    </div>
-
-                    <div className="settings-divider"></div>
-
-                    <div className="settings-danger">
-                      <h3>⚠️ Danger Zone</h3>
-                      <p>Once you delete your account, there's no going back. Please be certain.</p>
-                      <button type="button" className="danger-btn" onClick={() => {
-                        if (window.confirm('Are you sure you want to delete your account? This cannot be undone!')) {
-                          console.log('Account deleted')
-                        }
-                      }}>
-                        Delete Account
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                <div className="settings-actions">
-                  <button type="submit" className="save-btn">
-                    💾 Save Changes
-                  </button>
-                  <button type="reset" className="reset-btn">
-                    Reset
-                  </button>
+              <section className="settings-section">
+                <h2>Academic</h2>
+                <div className="form-grid">
+                  <label>
+                    Academic year
+                    <input name="academicYear" value={form.academicYear} onChange={change} placeholder={`${period.year}`} />
+                  </label>
+                  <label>
+                    Semester
+                    <select name="semester" value={form.semester} onChange={change}>
+                      <option value="fall">Fall</option>
+                      <option value="spring">Spring</option>
+                      <option value="summer">Summer</option>
+                    </select>
+                  </label>
                 </div>
-              </form>
-            </div>
-          </div>
+              </section>
+
+              <section className="settings-section">
+                <h2>Account</h2>
+                <button type="button" className="button-danger" onClick={signOut}>Logout</button>
+              </section>
+
+              <div className="settings-save-row">
+                <button type="submit" className="primary-action" disabled={saving}>
+                  {saving ? "Saving..." : "Save Changes"}
+                </button>
+              </div>
+            </form>
+          )}
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Settings
+export default Settings;

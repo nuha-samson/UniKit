@@ -1,28 +1,13 @@
 export const getAcademicPeriod = () => {
   const now = new Date();
-
-  const year = now.getFullYear();
   const month = now.getMonth() + 1;
+  const year = now.getFullYear();
 
   if (month >= 9) {
-    return {
-      term: "Fall",
-      year,
-      label: `Fall ${year}`,
-    };
+    return { term: "fall", year, label: `Fall ${year}` };
   }
-
-  if (month >= 1 && month <= 5) {
-    return {
-      term: "Spring",
-      year,
-      label: `Spring ${year}`,
-    };
+  if (month <= 5) {
+    return { term: "spring", year, label: `Spring ${year}` };
   }
-
-  return {
-    term: "Summer",
-    year,
-    label: `Summer ${year}`,
-  };
+  return { term: "summer", year, label: `Summer ${year}` };
 };

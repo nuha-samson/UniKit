@@ -156,3 +156,165 @@
     gap: 4px;
   }
 }
+.page-main {
+  flex: 1;
+  min-width: 0;
+  padding: 34px;
+}
+
+.deadline-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.deadline-group-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 9px;
+  border-bottom: 3px solid #111;
+}
+
+.deadline-group-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.deadline-group-header span {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.deadline-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.deadline-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  padding: 18px;
+  background: #fff;
+  border: 3px solid #111;
+  box-shadow: 5px 5px 0 #111;
+}
+
+.deadline-card.is-completed {
+  opacity: 0.72;
+}
+
+.deadline-content {
+  min-width: 0;
+}
+
+.deadline-top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.deadline-course {
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.deadline-urgency {
+  display: inline-block;
+  flex-shrink: 0;
+  padding: 6px 9px;
+  border: 2px solid #111;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.deadline-urgency.safe {
+  background: #7ee787;
+}
+
+.deadline-urgency.soon {
+  background: #f5d547;
+}
+
+.deadline-urgency.urgent {
+  background: #ff6b6b;
+}
+
+.deadline-card h3 {
+  margin: 8px 0;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.deadline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.deadline-meta span {
+  padding: 4px 7px;
+  border: 2px solid #111;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.deadline-due {
+  margin: 12px 0 0;
+  font-size: 14px;
+}
+
+.deadline-description {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 14px;
+  border-top: 2px solid #111;
+  color: #444;
+}
+
+.deadline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 750px) {
+  .page-main {
+    padding: 20px;
+  }
+
+  .deadline-card {
+    grid-template-columns: 1fr;
+  }
+
+  .deadline-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .deadline-top-line {
+    flex-direction: column;
+  }
+
+  .deadline-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .deadline-actions button {
+    width: 100%;
+  }
+}

@@ -1,29 +1,29 @@
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "./Auth.css";
 
 const Login = () => {
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  if (isAuthenticated) {
+  if (!authLoading && isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const submit = async (event) => {
+    event.preventDefault();
     setError("");
-    setLoading(true);
 
     try {
-      await login(email, password);
-      navigate("/dashboard");
+      setLoading(true);
+      await login(email.trim(), password);
+      navigate("/dashboard", { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -32,44 +32,32 @@ const Login = () => {
   };
 
   return (
-    <main>
-      <h1>UniKit</h1>
-      <h2>Log in</h2>
+    <main className="auth-page">
+      <section className="auth-panel">
+        <span className="auth-logo">UniKit</span>
+        <h1>Welcome back.</h1>
+        <p>Sign in to continue managing your academic life.</p>
 
-      {error && <p>{error}</p>}
+        {error && <div className="auth-error">{error}</div>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        <form onSubmit={submit}>
+          <label>
+            Email
+            <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+          </label>
+          <label>
+            Password
+            <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+          </label>
+          <button className="auth-submit" type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Log in"}
+          </button>
+        </form>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Log in"}
-        </button>
-      </form>
-
-      <p>
-        Don't have an account?{" "}
-        <Link to="/signup">Sign up</Link>
-      </p>
+        <p className="auth-footer">
+          Don't have an account? <Link to="/signup">Create one</Link>
+        </p>
+      </section>
     </main>
   );
 };
