@@ -13,7 +13,7 @@ UniKit is a student productivity dashboard designed to help university students 
 ##  Tech Stack
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=react,js,css,nodejs,express,mongodb,git,github" />
+  <img src="https://skillicons.dev/icons?i=react,js,css,nodejs,express,mongodb" />
 </p>
 
 ##  Project Goal
