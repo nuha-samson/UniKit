@@ -16,25 +16,19 @@ const validateDeadlineInput = ({
   if (!title || !course || !type || !dueDate) {
     return "Title, course, type, and due date are required";
   }
-
   if (!allowedTypes.includes(type)) {
     return "Invalid deadline type";
   }
-
   if (priority !== undefined && !allowedPriorities.includes(priority)) {
     return "Invalid priority";
   }
-
   if (description !== undefined && description.length > 1000) {
     return "Description is too long";
   }
-
   const parsedDate = new Date(dueDate);
-
   if (Number.isNaN(parsedDate.getTime())) {
     return "Invalid due date";
   }
-
   return null;
 };
 
@@ -105,7 +99,6 @@ export const createDeadline = async (req, res) => {
     });
   } catch (error) {
     console.error("Create deadline error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Failed to create deadline",
@@ -127,7 +120,6 @@ export const getDeadlines = async (req, res) => {
     });
   } catch (error) {
     console.error("Get deadlines error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Failed to load deadlines",
@@ -164,7 +156,6 @@ export const getDeadline = async (req, res) => {
     });
   } catch (error) {
     console.error("Get deadline error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Failed to load deadline",
@@ -212,7 +203,6 @@ export const updateDeadline = async (req, res) => {
           message: "Title cannot be empty",
         });
       }
-
       deadline.title = title.trim();
     }
 
@@ -246,20 +236,17 @@ export const updateDeadline = async (req, res) => {
           message: "Invalid deadline type",
         });
       }
-
       deadline.type = type;
     }
 
     if (dueDate !== undefined) {
       const parsedDate = new Date(dueDate);
-
       if (Number.isNaN(parsedDate.getTime())) {
         return res.status(400).json({
           success: false,
           message: "Invalid due date",
         });
       }
-
       deadline.dueDate = parsedDate;
     }
 
@@ -270,7 +257,6 @@ export const updateDeadline = async (req, res) => {
           message: "Invalid priority",
         });
       }
-
       deadline.priority = priority;
     }
 
@@ -281,7 +267,6 @@ export const updateDeadline = async (req, res) => {
           message: "Description is too long",
         });
       }
-
       deadline.description = description.trim();
     }
 
@@ -292,7 +277,6 @@ export const updateDeadline = async (req, res) => {
           message: "Completed must be a boolean",
         });
       }
-
       deadline.completedAt = completed ? new Date() : null;
     }
 
@@ -309,7 +293,6 @@ export const updateDeadline = async (req, res) => {
     });
   } catch (error) {
     console.error("Update deadline error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Failed to update deadline",
@@ -346,7 +329,6 @@ export const deleteDeadline = async (req, res) => {
     });
   } catch (error) {
     console.error("Delete deadline error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Failed to delete deadline",

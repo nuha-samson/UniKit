@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema(
       minlength: 2,
       maxlength: 50,
     },
-
     email: {
       type: String,
       required: true,
@@ -17,20 +16,17 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
-
     password: {
       type: String,
       required: true,
       minlength: 8,
     },
-
     academicYear: {
       type: String,
       trim: true,
       maxlength: 30,
       default: "",
     },
-
     semester: {
       type: String,
       enum: ["fall", "spring", "summer"],
@@ -43,5 +39,4 @@ const userSchema = new mongoose.Schema(
 );
 
 const User = mongoose.model("User", userSchema);
-
 export default User;
