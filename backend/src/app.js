@@ -10,8 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
-// origin: process.env.CLIENT_URL? process.env.CLIENT_URL.split(",").map((value) => value.trim()): true,
+ origin: process.env.CLIENT_URL? process.env.CLIENT_URL.split(",").map((value) => value.trim()): true,
     credentials: false,
   })
 );
