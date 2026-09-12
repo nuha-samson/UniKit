@@ -3,7 +3,7 @@
 Basically, a one-stop dashboard for college students to keep track of their classes and deadlines without having to hunt through five different apps.
 
 🔗 **Check it out:** https://uni-kit.vercel.app
-🔗 **Code:** https://github.com/nuha-samson/UniKit
+
 
 ## What is this?
 
