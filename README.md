@@ -75,5 +75,3 @@ I just wanted to solve a simple problem: making it easier for students to track 
 ## About Me
 
 **Nuha Samson**
-
-**Nuha Samson**
