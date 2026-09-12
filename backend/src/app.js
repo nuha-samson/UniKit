@@ -30,7 +30,7 @@ app.use(
   })
 );
 
-app.options("*", (req, res) => {
+app.options("*any", (req, res) => {
   res.sendStatus(200);
 });
 app.use(express.json());
@@ -47,7 +47,7 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/deadlines", deadlineRoutes);
 app.use("/api/user", userRoutes);
 
-app.use((req, res) => {
+app.all("*any", (req, res) => {
   res.status(404).json({
     success: false,
     message: "Route not found",
