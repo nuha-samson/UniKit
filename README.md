@@ -72,6 +72,6 @@ I just wanted to solve a simple problem: making it easier for students to track 
 * Making the mobile version even smoother.
 * More productivity tools and customization.
 
-## About Me
+## Author
 
 **Nuha Samson**
