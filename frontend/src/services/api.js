@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://unikit-brtm.onrender.com'
+const API_BASE_URL = 'https://unikit-brtm.onrender.com/api'
 //import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const apiCall = async (endpoint, options = {}) => {
