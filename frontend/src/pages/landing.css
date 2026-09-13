@@ -1714,3 +1714,10 @@
 .hero-primary{
    color:var(--landing-white);
 }
+.hero-primary {
+  color: #ffffff;
+}
+
+.final-button {
+  color: #ffffff;
+}
