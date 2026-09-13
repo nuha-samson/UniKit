@@ -1711,3 +1711,6 @@
     transition: none;
   }
 }
+.hero-primary{
+   color:var(--landing-white);
+}
