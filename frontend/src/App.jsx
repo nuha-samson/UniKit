@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import CourseGrid from "./components/CourseGrid/CourseGrid";
@@ -14,11 +15,13 @@ import NotFound from "./pages/NotFound";
 const App = () => {
   return (
     <Routes>
+   
+      <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
 
+  
       <Route element={<ProtectedRoute />}>
-        <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/courses" element={<CourseGrid />} />
         <Route path="/deadlines" element={<Deadlines />} />
