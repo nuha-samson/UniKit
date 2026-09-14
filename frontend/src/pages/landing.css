@@ -841,11 +841,11 @@
 
 @keyframes marquee {
   from {
-    transform: translateX(25%);
+    transform: translateX(15%);
   }
 
   to {
-    transform: translateX(75%);
+    transform: translateX(-15%);
   }
 }
 
@@ -886,7 +886,7 @@
 .problem-intro h2 span {
   display: inline;
 
-  padding: 0 4px;
+  /*padding: 0 4px; */
 
   background: var(--landing-yellow);
 
