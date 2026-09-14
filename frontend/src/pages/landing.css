@@ -1476,7 +1476,7 @@
 
     font-size: clamp(48px, 13vw, 68px);
 
-    line-height: 0.96;
+    line-height: 1;
 
     letter-spacing: -0.055em;
   }
