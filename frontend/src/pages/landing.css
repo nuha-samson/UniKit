@@ -845,7 +845,7 @@
   }
 
   to {
-    transform: translateX(-15%);
+    transform: translateX(50%);
   }
 }
 
@@ -886,7 +886,7 @@
 .problem-intro h2 span {
   display: inline;
 
-  /*padding: 0 4px; */
+  padding: 5px 6px; 
 
   background: var(--landing-yellow);
 
