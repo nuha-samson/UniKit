@@ -164,8 +164,8 @@
   font-family: var(--font-heading);
 
   font-size: clamp(56px, 6vw, 94px);
-  line-height: 1;
-  letter-spacing: -0.075em;
+  line-height: 0.91;
+  letter-spacing: -0.05em;
 
   font-weight: 950;
 }
