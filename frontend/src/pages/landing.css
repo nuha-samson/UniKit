@@ -820,7 +820,7 @@
 
   padding: 15px 0;
 
-  animation: marquee 22s linear infinite;
+  animation: marquee 11s linear infinite;
 }
 
 .landing-marquee span {
@@ -846,6 +846,9 @@
 
   to {
     transform: translateX(50%);
+  }
+    to {
+    transform: translateX(15%);
   }
 }
 
@@ -877,7 +880,7 @@
   font-family: var(--font-heading);
 
   font-size: clamp(44px, 5vw, 72px);
-  line-height: 0.95;
+  line-height: 1.5;
   letter-spacing: -0.065em;
 
   font-weight: 950;
@@ -886,7 +889,7 @@
 .problem-intro h2 span {
   display: inline;
 
-  padding: 5px 6px; 
+  padding: 0px 6px; 
 
   background: var(--landing-yellow);
 
