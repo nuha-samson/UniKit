@@ -115,7 +115,7 @@
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 900px) {
     .navbar {
         min-height: 64px;
     }
