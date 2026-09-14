@@ -200,6 +200,7 @@
   gap: 18px;
 
   flex-wrap: wrap;
+   color:#fff;
 }
 
 .hero-primary,
@@ -1502,6 +1503,7 @@
     align-items: flex-start;
 
     gap: 14px;
+     color:#fff;
   }
 
   .hero-primary,
